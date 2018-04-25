@@ -86,7 +86,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.readLocalJsonFiles = function () {
         console.log('Reading local JSON files.');
         $http({
-            url: 'http://localhost:5000/procs',
+            url: 'https://hybrid-proc.herokuapp.com/procs',
             method: 'GET',
             headers: { 'Content-Type': '*/*' }
         }).then(function (response) {
