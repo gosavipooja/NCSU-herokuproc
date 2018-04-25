@@ -38,7 +38,6 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.proclist = {};
     $scope.procedure = {};
     $scope.selected_step = {};
-    $scope.fileUpload = false;
 
     $scope.init = function () {
         console.log('Init called...');
@@ -109,10 +108,6 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
         console.log('clearing all local data...');
         Storage.removeAll();
     };
-
-    $scope.toggleUpload = function () {
-        $scope.fileUpload = !$scope.fileUpload;
-    }
 
     $scope.openModal = function (data) {
         var modalInstance = $modal.open({
