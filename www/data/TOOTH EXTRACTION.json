@@ -1,0 +1,119 @@
+{
+    "name": "Tooth Extraction",
+    "steps": [
+        {
+            "id": "1",
+            "text": "Unstow from Dental Subpack: Elevator,301 (Dental-4) 34S (Dental-4).",
+            "media": [
+                {
+                    "id": "1",
+                    "title": "Tooth Extraction Image",
+                    "type": "image",
+                    "path": "http://www.medhalt.com/procedure/ckeditor/plugins/imageuploader/uploads/17707ba2.jpg"
+                },
+                {
+                    "id": "2",
+                    "title": "Tooth Extraction Video",
+                    "type": "video",
+                    "path": "https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=0"
+                }
+            ],
+            "comments": [
+                {
+                    "id": "1",
+                    "text": "This is the first tooth extraction comment."
+                },
+                {
+                    "id": "2",
+                    "text": "This is the second tooth extraction comment."
+                },
+                {
+                    "id": "3",
+                    "text": "This is the third tooth extraction comment."
+                }
+            ],
+            "timer": false
+        },
+        {
+            "id": "2",
+            "text": "Anesthetize area where tooth is to be extracted.",
+            "media": [],
+            "comments": [
+                {
+                    "id": "1",
+                    "text": "This is the first tooth extraction for the step 2 comment."
+                },
+                {
+                    "id": "2",
+                    "text": "This is the second tooth extraction for the step 2 comment."
+                },
+                {
+                    "id": "3",
+                    "text": "This is the third tooth extraction for the step 2 comment."
+                }
+            ],
+            "timer": false
+        },
+        {
+            "id": "2.1",
+            "text": "Place correct Forceps on tooth to be extracted exerting force toward root of tooth and squeeze Forceps with moderate force. Use other hand to grasp onto both sides of gum tissue of tooth to be extracted (if an upper tooth) or to hold lower jaw from moving (if a lower tooth).",
+            "media": [],
+            "comments": [
+                {
+                    "id": "1",
+                    "text": "This is comment 1 of step 2.1."
+                },
+                {
+                    "id": "2",
+                    "text": "This is comment 2 of step 2.1."
+                },
+                {
+                    "id": "3",
+                    "text": "This is comment 3 of step 2.1."
+                }
+            ],
+            "timer": false
+        },
+        {
+            "id": "2.2",
+            "text": "Exert moderate side-to-side force (tongue to cheek) holding for 30 seconds in each direction. Continue this motion until tooth loosens and comes up out of socket on its own.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "2.3",
+            "text": "If after several minutes, tooth has not increased in mobility, continue to step 6.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "3",
+            "text": "From cheek side, place small Elevator 301 between tooth to be extracted and adjacent tooth with lower edge of Elevator against tooth to be extracted. Apply moderate rotational force to Elevator (as if turning a screwdriver) creating a lifting force on tooth to be extracted and hold for 60 seconds. Apply this force sequentially on both front and back side of tooth. Once tooth is slightly elevated then repeat with large Elevator 34S.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "4",
+            "text": "When tooth removed, fold Gauze Pad and apply to bleeding socket until bleeding stops.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "5",
+            "text": "Dispose of blood soaked Gauze Pad in Ziplock Bag (P4-B7). (blue) Affix appropriate Biohazard Decal (CCPK) and dispose of Ziplock Bag in biohazardous trash.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        }
+    ],
+    "notes": [
+        {
+            "id": "1",
+            "text": "Tooth Extraction is a last resort and is reserved only for those cases where pain is excessive or an infective process has set in and the amount of time remaining for the mission is greater than the time to safely control infection with antibiotics. A course of antibiotics will not cure a tooth infection, and more definitive care is always necessary. Extraction should only be done when all other treatment options have been exhausted and on consultation with Surgeon."
+        }
+    ]
+}

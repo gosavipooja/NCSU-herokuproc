@@ -1,0 +1,114 @@
+{
+    "name": "Dental - Crown Replacement",
+    "steps": [
+        {
+            "id": "1",
+            "text": "Unstow: AMP Carver File (Dental-1) (blue) Tongue Depressor (P3-A9) Dycal Base (Dental-8) Dycal Catalyst (Dental-8) Cotton Swabs (P2-B3) Gauze Pads (4) (P3-B4) Dental Floss (Dental-10)",
+            "media": [],
+            "comments": [
+                {
+                    "id": "1",
+                    "text": "This is the first dental step 1 comment."
+                },
+                {
+                    "id": "2",
+                    "text": "This is the second dental step 1 comment."
+                },
+                {
+                    "id": "3",
+                    "text": "This is the third dental step 1 comment."
+                }
+            ],
+            "timer": false
+        },
+        {
+            "id": "2",
+            "text": "Remove residual cement from crown and tooth utilizing Carver File.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "3",
+            "text": "Carefully check fit of crown by replacing on tooth and biting down.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "4",
+            "text": "Remove and dry off crown.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "5",
+            "text": "Dry off with Gauze Pads and isolate tooth as well as possible.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "6",
+            "text": "Place a 1.5 cm (0.5 inch) line of both Dycal Base and Dycal Catalyst on one end of Tongue Depressor and mix well with stick end of Cotton Swab.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "7",
+            "text": "Place small portion of Dycal mixture around inside walls of crown and seat crown on tooth using a positive rocking force.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "8",
+            "text": "Have patient bite down on cotton tip end of Cotton Swab for 3 seconds. Remove Cotton Swab and have patient bite down to determine if crown is fully seated.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "9",
+            "text": "If crown not fully seated, carefully remove crown by prying up at different locations on crown margin with Carver File until crown is loose. Remove crown and return to step 2.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "10",
+            "text": "If crown is fully seated, replace Cotton Swab over crown and have patient continue biting on Cotton Swab with moderate pressure for 5 minutes.",
+            "media": [],
+            "comments": [],
+            "timer": false
+        },
+        {
+            "id": "11",
+            "text": "Gently clean remaining cement from around gum with Carver File and Dental Floss. Place a knot in center of a 45-cm (18-inch) piece of Dental Floss and glide it back and forth gently between crown and adjacent teeth to clean cement from between teeth.",
+            "media": [],
+            "comments": [
+                {
+                    "id": "1",
+                    "text": "This is the first dental last step comment."
+                },
+                {
+                    "id": "2",
+                    "text": "This is the second dental last step comment."
+                },
+                {
+                    "id": "3",
+                    "text": "This is the third dental last step comment."
+                }
+            ],
+            "timer": false
+        }
+    ],
+    "notes": [
+        {
+            "id": "1",
+            "text": "If there is no pain, especially when eating or drinking, stow crown in secure location and crown can safely be placed upon return. Perform crown replacement procedure in event of pain and discomfort."
+        }
+    ]
+}

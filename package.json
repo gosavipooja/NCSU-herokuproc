@@ -1,0 +1,23 @@
+{
+  "name": "hybrid-app",
+  "version": "1.0.0",
+  "description": "hybrid app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'Error: No test specified' && exit 1",
+    "start": "node index.js",
+    "stop": "forever stopall"
+  },
+  "author": "Sumit Srivastava",
+  "license": "ISC",
+  "dependencies": {
+    "angular-material": "^1.1.8",
+    "angular-route": "^1.6.9",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "forever": "^0.15.3"
+  },
+  "engines": {
+    "node": "8.9.4"
+  }
+}

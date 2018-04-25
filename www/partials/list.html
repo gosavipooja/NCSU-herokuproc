@@ -1,0 +1,23 @@
+<div ng-controller="index" ng-init="init()">
+    <h1 align='center'>
+        HybridApp Index
+    </h1>
+    <table class='index'>
+        <tbody>
+            <tr ng-repeat="proc in proclist" ng-click="openProc(proc)">
+                <td class='sno_index'>{{proc.id}}</td>
+                <td class='cnt'>{{proc.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <md-divider></md-divider>
+    <br>
+    <md-button class="md-raised" ng-click="resetLocalStorage()">
+        <i class="fas fa-trash"></i> Reset Local Storage</md-button>
+    <md-button class="md-raised" ng-click="readLocalJsonFiles()">
+        <i class="fas fa-redo"></i> Reload JSON Files</md-button>
+    <md-button class="md-raised" ng-click="openModal()">
+        <i class="fas fa-upload"></i> Upload New JSON File</md-button>
+    
+</div>

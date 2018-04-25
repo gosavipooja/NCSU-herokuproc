@@ -1,0 +1,47 @@
+<style>
+    table {
+        border: none !important;
+        border-collapse: collapse;
+    }
+
+    td,
+    th {
+        border: none !important;
+        padding: 0;
+    }
+</style>
+
+<div class="modal-header">
+    <h4 class="modal-title">File Upload</h4>
+</div>
+<div style="margin: 5%;">
+    <form ref='uploadForm' target="result" id='uploadForm' action='http://localhost:5000/upload' method='post' encType="multipart/form-data">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <input type="file" name="jsonFile" accept=".json" />
+                    <md-button type='submit' class="md-raised pull-right" value='Upload!'>
+                        <i class="fas fa-upload"></i> Upload file</md-button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <ul>
+                        <li>JSON files only.</li>
+                        <li>File name should not contain '.'</li>
+                        <li>Files with same name would be overwritten!</li>
+                        <li>Tap anywhere outside this window to dismiss.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Upload Status:
+                </td>
+                <td>
+                    <iframe frameborder="1" style="height: 4rem;" name="result"></iframe>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
