@@ -19,6 +19,9 @@ server.get('/procs', function (req, res) {
     data['list'] = filenames;
     console.log('received file #' + ++i);
     if (i == filenames.length) {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       res.send(data);
     }
   }, function (err) {
