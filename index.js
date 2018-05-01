@@ -34,7 +34,7 @@ server.post('/upload', function (req, res) {
     let jsonFile = req.files.jsonFile;
     // Use the mv() method to place the file somewhere on the server
     if (jsonFile) {
-      jsonFile.mv('temp/' + jsonFile.name, function (err) {
+      jsonFile.mv('www/data/' + jsonFile.name, function (err) {
         if (err) {
           console.log(err);
           return res.status(500).send(err);
@@ -42,7 +42,7 @@ server.post('/upload', function (req, res) {
           var fname = JSON.stringify(jsonFile.name);
           console.log('File: ' + fname + ' Uploaded Successfuly!');
           var data = {};
-          readFile('temp/' + jsonFile.name, function (filename, content) {
+          readFile('www/data/' + jsonFile.name, function (filename, content) {
             data["name"] = jsonFile.name;
             data[jsonFile.name] = content;
             console.log('File read: ' + jsonFile.name);
