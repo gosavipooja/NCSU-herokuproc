@@ -38,6 +38,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.proclist = {};
     $scope.procedure = {};
     $scope.selected_step = {};
+    $scope.fileUpload = false;
 
     $scope.init = function () {
         console.log('Init called...');
@@ -46,8 +47,8 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
             $scope.data = Storage.get('data');
             $scope.proclist = Storage.get('proclist');
         } else {
-            console.log('No stored data found...  reading local json files.');
-            $scope.readLocalJsonFiles();
+            console.log('No stored data found...  reading json files from DB.');
+            $scope.readDBJsonFiles();
             console.log('Data is set: ' + Storage.get('data'));
         }
         $scope.procedure = Storage.get('procedure');
@@ -82,21 +83,21 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
         $location.path('');
     };
 
-    $scope.readLocalJsonFiles = function () {
-        console.log('Reading local JSON files.');
+    $scope.readDBJsonFiles = function () {
+        console.log('Reading JSON files from DB.');
         $http({
-            url: 'https://hybrid-proc.herokuapp.com/procs',
+            url: 'http://localhost:5000/procList',
             method: 'GET',
             headers: { 'Content-Type': '*/*' }
         }).then(function (response) {
             // console.log('SUCCESS: ' + JSON.stringify(response));
             console.log('JSON Files read.');
+            Storage.set('data', response.data);
             var procListStr = response.data.list + '';
             var procList = procListStr.split(',');
             var i = 1;
             var procListJson = [];
             procList = procList.map(proc => procListJson.push({ "id": i++, "name": proc.slice(0, -5) }));
-            Storage.set('data', response.data);
             Storage.set('proclist', procListJson);
             console.log('JSON Data and Procedure list is set in LocalStorage.');
         }, function (response) {
@@ -105,9 +106,13 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     }
 
     $scope.resetLocalStorage = function () {
-        console.log('clearing all local data...');
+        console.log('clearing all local storage data...');
         Storage.removeAll();
     };
+
+    $scope.toggleUpload = function () {
+        $scope.fileUpload = !$scope.fileUpload;
+    }
 
     $scope.openModal = function (data) {
         var modalInstance = $modal.open({
