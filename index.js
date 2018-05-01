@@ -3,8 +3,6 @@ const fileUpload = require('express-fileupload');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
 
-var dburl = process.env.MONGOLAB_URI;
-
 var server = express();
 server.use(fileUpload());
 server.use(express.static(__dirname + '/www'));
@@ -14,7 +12,7 @@ var port = process.env.PORT || 5000;
 /**
  * Connect to database and then start listening on PORT.
  */
-MongoClient.connect(dburl, function (err, db) {
+MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
   if (err) throw err;
   console.log('Database connected!');
   server.locals.dbo = db.db('hybrid');
