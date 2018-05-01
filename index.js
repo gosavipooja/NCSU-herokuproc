@@ -3,7 +3,7 @@ const fileUpload = require('express-fileupload');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
 
-var dburl = 'mongodb://localhost:27017/hybrid';
+var dburl = process.env.MONGOLAB_URI;
 
 var server = express();
 server.use(fileUpload());
