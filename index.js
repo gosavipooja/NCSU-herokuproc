@@ -15,7 +15,7 @@ var port = process.env.PORT || 5000;
 MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
   if (err) throw err;
   console.log('Database connected!');
-  server.locals.dbo = db.db('hybrid');
+  server.locals.dbo = db.db('heroku_jwvl485z');
 
   server.listen(port, function () {
     console.log('server started... listening on port ' + port);
