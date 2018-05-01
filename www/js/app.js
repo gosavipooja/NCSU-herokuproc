@@ -86,7 +86,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.readDBJsonFiles = function () {
         console.log('Reading JSON files from DB.');
         $http({
-            url: 'http://localhost:5000/procList',
+            url: 'https://hybrid-proc.herokuapp.com/procList',
             method: 'GET',
             headers: { 'Content-Type': '*/*' }
         }).then(function (response) {
