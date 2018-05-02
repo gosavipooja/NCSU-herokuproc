@@ -24,8 +24,23 @@
                     <tr ng-repeat="pstep in procedure.steps" ng-click="openStep(pstep)" on-long-press='itemOnLongPress(pstep)' on-touch-end='itemOnTouchEnd(pstep)'>
                         <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id}">{{pstep.id}}</td>
                         <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id}">{{pstep.text}}</td>
-                        <td>
-                            <md-button style="min-width: 5% !important;"><i class="fas fa-plus-circle"></i></md-button>
+                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id}">
+                            <md-menu md-position-mode="target-right target">
+                                <md-button aria-label="plus" ng-click="openMenu($mdMenu, $event)" style="min-width: 5% !important;">
+                                    <i class="fas fa-plus-circle"></i>
+                                </md-button>
+                                <md-menu-content width="4">
+                                    <md-menu-item>
+                                        <md-button ng-click="doOption1(pstep)">Option 1</md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doOption2(pstep)">Option 2</md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doOption3(pstep)">Option 3</md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
                         </td>
                     </tr>
                 </tbody>

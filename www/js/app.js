@@ -41,7 +41,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.fileUpload = false;
 
     $scope.init = function () {
-        console.log('Init called...');
+        console.log('Init...');
         if (Storage.get('data')) {
             console.log('Stored data found.');
             $scope.data = Storage.get('data');
@@ -49,31 +49,30 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
         } else {
             console.log('No stored data found...  reading json files from DB.');
             $scope.readDBJsonFiles();
-            console.log('Data is set: ' + Storage.get('data'));
+            console.log('Data is set');
         }
         $scope.procedure = Storage.get('procedure');
         $scope.selected_step = Storage.get('selected_step');
     };
 
     $scope.itemOnLongPress = function (pstep) {
-        console.log("Long Press event. For step: " + JSON.stringify(pstep));
+        console.log("Long Press event. For step: " + JSON.stringify(pstep.id));
     };
 
     $scope.itemOnTouchEnd = function (pstep) {
-        console.log("Touch end event. For step: " + JSON.stringify(pstep));
+        console.log("Touch end event. For step: " + JSON.stringify(pstep.id));
     };
 
     $scope.openStep = function (pstep) {
-        console.log('Displaying step: ' + pstep);
+        console.log('Displaying step');
         Storage.set('selected_step', pstep);
         $scope.selected_step = pstep;
         console.log('selected step is: ' + Storage.get('selected_step').id);
     }
 
     $scope.openProc = function (proc) {
-        console.log('Opening proc: ' + JSON.stringify(proc))
+        console.log('Opening proc: ' + JSON.stringify(proc.name))
         Storage.set('procedure', JSON.parse($scope.data[proc.name + '.json']));
-        console.log('The following Proc is set in storage: ' + JSON.stringify(Storage.get('procedure')));
         $location.path('details');
     };
 
@@ -114,8 +113,10 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
         $scope.fileUpload = !$scope.fileUpload;
     }
 
+    $scope.modalInstance = {};
+
     $scope.openModal = function (data) {
-        var modalInstance = $modal.open({
+        $scope.modalInstance = $modal.open({
             templateUrl: 'partials/modal.html',
             controller: 'index',
             resolve: {
@@ -129,7 +130,29 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.cleanPath = function (path) {
         // This is needed if media files are Youtube or any other external links.
         return $sce.trustAsResourceUrl(path);
-    }
+    };
+
+    $scope.originatorEv = {};
+
+    $scope.openMenu = function ($mdMenu, ev) {
+        originatorEv = ev;
+        $mdMenu.open(ev);
+    };
+
+    $scope.doOption1 = function (step) {
+        $scope.openStep(step);
+        console.log('Perform Option 1 action here for step: ' + step.id);
+    };
+
+    $scope.doOption2 = function (step) {
+        $scope.openStep(step);
+        console.log('Perform Option 2 action here for step: ' + step.id);
+    };
+
+    $scope.doOption3 = function (step) {
+        $scope.openStep(step);
+        console.log('Perform Option 3 action here for step: ' + step.id);
+    };
 
 }]);
 
