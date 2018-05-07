@@ -126,6 +126,15 @@ td.indented_tx {
     background-color: rgb(236, 236, 236);
 }
 
+td.warn {
+    border: 0.5px dotted #0f0f0f;
+    padding: 0.5rem;
+    margin-left: 1.5rem;
+    text-indent: 1.5rem;
+    text-align: left;
+    background-color: rgb(252, 212, 212);
+}
+
 td.selected {
     background-color: rgb(82, 192, 255);
     color: white;

@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h4 class="modal-title">Image Capture</h4>
+</div>
+<div style="margin: 5%;">
+    <input type="file" accept="image/*" id="file-input">
+    <img id="output" width="50%" height="50%">
+</div>
+<script>
+    console.log('Image script loaded');
+    const output = document.getElementById('output');
+    const fileInput = document.getElementById('file-input');
+    fileInput.addEventListener('change', (e) => doSomethingWithFiles(e.target.files));
+    function doSomethingWithFiles(fileList) {
+        let file = null;
+        for (let i = 0; i < fileList.length; i++) {
+            if (fileList[i].type.match(/^image\//)) {
+                file = fileList[i];
+                break;
+            }
+        }
+        if (file !== null) {
+            output.src = URL.createObjectURL(file);
+        }
+    }
+</script>

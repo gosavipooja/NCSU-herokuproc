@@ -64,10 +64,12 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     };
 
     $scope.openStep = function (pstep) {
-        console.log('Displaying step');
-        Storage.set('selected_step', pstep);
-        $scope.selected_step = pstep;
-        console.log('selected step is: ' + Storage.get('selected_step').id);
+        if (pstep.id != 'WARN') {
+            console.log('Displaying step');
+            Storage.set('selected_step', pstep);
+            $scope.selected_step = pstep;
+            console.log('selected step is: ' + Storage.get('selected_step').id);
+        }
     }
 
     $scope.openProc = function (proc) {
@@ -115,9 +117,45 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
 
     $scope.modalInstance = {};
 
-    $scope.openModal = function (data) {
+    $scope.openUploadModal = function (data) {
         $scope.modalInstance = $modal.open({
-            templateUrl: 'partials/modal.html',
+            templateUrl: 'partials/upload.modal.html',
+            controller: 'index',
+            resolve: {
+                data: function () {
+                    return data === null ? {} : data;
+                }
+            }
+        }).result.then(function () { }, function (res) { });
+    };
+
+    $scope.openVideoModal = function (data) {
+        $scope.modalInstance = $modal.open({
+            templateUrl: 'partials/video.partial.html',
+            controller: 'index',
+            resolve: {
+                data: function () {
+                    return data === null ? {} : data;
+                }
+            }
+        }).result.then(function () { }, function (res) { });
+    };
+
+    $scope.openImageModal = function (data) {
+        $scope.modalInstance = $modal.open({
+            templateUrl: 'partials/image.partial.html',
+            controller: 'index',
+            resolve: {
+                data: function () {
+                    return data === null ? {} : data;
+                }
+            }
+        }).result.then(function () { }, function (res) { });
+    };
+
+    $scope.openAudioModal = function (data) {
+        $scope.modalInstance = $modal.open({
+            templateUrl: 'partials/audio.partial.html',
             controller: 'index',
             resolve: {
                 data: function () {
@@ -139,19 +177,37 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
         $mdMenu.open(ev);
     };
 
-    $scope.doOption1 = function (step) {
+    $scope.markComplete = function (step) {
         $scope.openStep(step);
-        console.log('Perform Option 1 action here for step: ' + step.id);
+        console.log('Marking Step: ' + step.id + ' as Complete');
     };
 
-    $scope.doOption2 = function (step) {
+    $scope.markFailed = function (step) {
         $scope.openStep(step);
-        console.log('Perform Option 2 action here for step: ' + step.id);
+        console.log('Marking Step: ' + step.id + ' as Failed');
     };
 
-    $scope.doOption3 = function (step) {
+    $scope.addImage = function (step) {
         $scope.openStep(step);
-        console.log('Perform Option 3 action here for step: ' + step.id);
+        console.log('Adding Image for step: ' + step.id);
+        $scope.openImageModal();
+    };
+
+    $scope.addVideo = function (step) {
+        $scope.openStep(step);
+        console.log('adding Video for Step: ' + step.id);
+        $scope.openVideoModal();
+    };
+
+    $scope.addAudio = function (step) {
+        $scope.openStep(step);
+        console.log('adding Audio for Step: ' + step.id);
+        $scope.openAudioModal();
+    };
+
+    $scope.addComment = function (step) {
+        $scope.openStep(step);
+        console.log('Adding comment for step: ' + step.id);
     };
 
 }]);

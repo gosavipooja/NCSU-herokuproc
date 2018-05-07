@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title">Video Capture</h4>
+</div>
+<div style="margin: 5%;">
+    <input type="file" accept="video/*" capture="camera" id="recorder">
+    <video id="player" controls></video>
+</div>
+<script>
+    console.log('Video script loaded');
+    var recorder = document.getElementById('recorder');
+    var player = document.getElementById('player');
+
+    recorder.addEventListener('change', function (e) {
+        var file = e.target.files[0];
+        player.src = URL.createObjectURL(file);
+    });
+</script>

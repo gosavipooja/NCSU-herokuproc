@@ -1,0 +1,70 @@
+<style>
+    html,
+    body {
+        margin: 0!important;
+        padding: 0!important;
+        overflow: hidden!important;
+        width: 100%;
+    }
+</style>
+
+<div class="modal-header">
+    <h4 class="modal-title">Record Video</h4>
+</div>
+<div style="margin: 5%;">
+    <button class="md-raised md-primary" id="btn-start-recording">Start Recording</button>
+    <button class="md-raised md-primary" id="btn-stop-recording">Stop Recording</button>
+    <hr>
+    <video controls autoplay style: "width: 100%"></video>
+</div>
+
+<script>
+    console.log('script is called here');
+    var recorder; // globally accessible
+    var btnStart = document.getElementById('btn-start-recording');
+    var btnStop = document.getElementById('btn-stop-recording');
+    var video = document.querySelector('video');
+
+    function captureCamera(callback) {
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function (camera) {
+            console.log('capture camera');
+            callback(camera);
+        }).catch(function (error) {
+            alert('Unable to record Video.');
+            console.error(error);
+        });
+    };
+
+    function stopRecordingCallback() {
+        console.log('stop recording');
+        video.src = video.srcObject = null;
+        video.src = URL.createObjectURL(recorder.getBlob());
+        video.play();
+        recorder.camera.stop();
+        recorder.destroy();
+        recorder = null;
+    };
+
+    btnStart.onclick = function () {
+        this.disabled = true;
+        console.log('start recording');
+        captureCamera(function (camera) {
+            setSrcObject(camera, video);
+            video.play();
+            recorder = RecordRTC(camera, {
+                type: 'video'
+            });
+            recorder.startRecording();
+            // release camera on stopRecording
+            recorder.camera = camera;
+            btnStop.disabled = false;
+        });
+    };
+
+    btnStop.onclick = function () {
+        console.log('stopping recording');
+        this.disabled = true;
+        recorder.stopRecording(stopRecordingCallback);
+        btnStart.disabled = false;
+    };
+</script>
