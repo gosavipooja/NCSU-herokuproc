@@ -22,6 +22,81 @@ MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
   });
 });
 
+server.post('/uploadImage', function (req, res) {
+  if (!req.files) {
+    console.log('No files present in the image request.');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    return res.status(400).send('No image files to upload.');
+  } else {
+    let imgFile = req.files.imgFile;
+    if (imgFile) {
+      console.log('dummy image response!');
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      res.status(200).send('Dummy response from server for image file:\n' + JSON.stringify(imgFile.name));
+    } else {
+      console.log('No imgFile present in the image request.');
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      return res.status(400).send('No image files to upload.');
+    }
+  }
+});
+
+server.post('/uploadVideo', function (req, res) {
+  if (!req.files) {
+    console.log('No files present in the video request.');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    return res.status(400).send('No video files to upload.');
+  } else {
+    let videoFile = req.files.videoFile;
+    if (videoFile) {
+      console.log('dummy video response!');
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      res.status(200).send('Dummy response from server for file:\n' + JSON.stringify(videoFile.name));
+    } else {
+      console.log('No videoFile present in the video request.');
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      return res.status(400).send('No video files to upload.');
+    }
+  }
+});
+
+server.post('/uploadAudio', function (req, res) {
+  if (!req.files) {
+    console.log('No files present in the audio request.');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    return res.status(400).send('No audio files to upload.');
+  } else {
+    let audioFile = req.files.audioFile;
+    if (audioFile) {
+      console.log('dummy audio response!');
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      res.status(200).send('Dummy response from server for file:\n' + JSON.stringify(audioFile.name));
+    } else {
+      console.log('No audioFile present in the audio request.');
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      return res.status(400).send('No audio files to upload.');
+    }
+  }
+});
+
 /**
  * This method uploads the file and then saves the file contents to MongoDB.
  */

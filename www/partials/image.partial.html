@@ -1,9 +1,16 @@
-<div class="modal-header">
-    <h4 class="modal-title">Image Capture</h4>
-</div>
-<div style="margin: 5%;">
-    <input type="file" accept="image/*" id="file-input">
-    <img id="output" width="50%" height="50%">
+<div ng-init="initImageModal()">
+    <div class="modal-header">
+        <h4 class="modal-title">Image Capture</h4>
+    </div>
+    <div style="margin: 5%;">
+        <form ref='uploadForm' target="result" id='uploadForm' action='http://localhost:5000/uploadImage' method='post' encType="multipart/form-data">
+            <input type="file" name="imgFile" accept="image/*" onchange="angular.element(this).scope().imageSelected(this)" id="file-input">
+            <md-button type='submit' class="md-raised pull-right" value='Upload!'>
+                <i class="fas fa-upload"></i> Upload Image</md-button>
+            <img ng-src="{{imgSrc}}" id="output" width="50%" height="50%">
+            <iframe frameborder="1" style="height: 6rem;" name="result"></iframe>
+        </form>
+    </div>
 </div>
 <script>
     console.log('Image script loaded');
@@ -19,6 +26,7 @@
             }
         }
         if (file !== null) {
+            console.log('data:' + file);
             output.src = URL.createObjectURL(file);
         }
     }

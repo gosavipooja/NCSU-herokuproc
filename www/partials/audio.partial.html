@@ -1,9 +1,16 @@
-<div class="modal-header">
-    <h4 class="modal-title">Audio Capture</h4>
-</div>
-<div style="margin: 5%;">
-    <input type="file" accept="audio/*" id="recorder">
-    <audio id="player" controls></audio>
+<div ng-init="initAudioModal()">
+    <div class="modal-header">
+        <h4 class="modal-title">Audio Capture</h4>
+    </div>
+    <div style="margin: 5%;">
+        <form ref='uploadForm' target="result" id='uploadForm' action='http://localhost:5000/uploadAudio' method='post' encType="multipart/form-data">
+            <input type="file" name="audioFile" accept="audio/*" onchange="angular.element(this).scope().audioSelected(this)" id="recorder">
+            <md-button type='submit' class="md-raised pull-right" value='Upload!'>
+                <i class="fas fa-upload"></i> Upload Audio</md-button>
+            <audio ng-src="{{audSrc}}" id="player" controls></audio>
+            <iframe frameborder="1" style="height: 6rem;" name="result"></iframe>
+        </form>
+    </div>
 </div>
 <script>
     console.log('Audio script loaded');
@@ -12,6 +19,7 @@
 
     recorder.addEventListener('change', function (e) {
         var file = e.target.files[0];
+        console.log('data:' + file);
         player.src = URL.createObjectURL(file);
     });
 </script>

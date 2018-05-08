@@ -128,7 +128,33 @@
                                     <h1 class="md-display-2">Set Timer</h1>
                                     <p id='timerPlaceholder'></p>
                                 </div>
-                                <div ng-if="!selected_step || !selected_step.timer">No Timer needed for this step.</div>
+                                <!-- <div ng-if="!selected_step || !selected_step.timer">No Timer needed for this step.</div> -->
+
+                                <!-- <div ng-controller="index"> -->
+                                <div stopwatch title="Stopwatch #2" time="sharedTime"></div>
+                                <hr />
+                                <!-- </div> -->
+
+                                <script type="text/ng-template" id="stopwatch.html">
+                                  <!-- <div><strong>Current Time: </strong>{{currentTime | date:'h:mm:ss a'}}</div> -->
+                                  <div ng-if="swctrl && swctrl.getElapsedMs()"><strong>Elapsed Time: </strong>{{swctrl.getElapsedMs()}} ms</div>
+                                  <button id="start" class="btn btn-success" ng-click="swctrl.start()">Start</button>
+                                  <button id="stop" class="btn btn-danger" ng-click="swctrl.stop()">Stop</button>
+                                  <button id="reset" class="btn btn-default" ng-click="swctrl.reset()">Reset</button>
+                                  <button id="lap" class="btn btn-default" ng-click="printLap(swctrl.getElapsedMs())">Lap</button>
+                                  <br>
+                                  <div>Lap is: {{lapVal}}</div>
+                                </script>
+                                 
+                                <!-- I need to print a lap here right! so yes.. $scope.lapvalue variable bnao app.js mein.. then uski val
+                                value mein append kar do the value of the timer each time the lap button is clicked.
+                            something like this:
+                        and then in app.js:
+
+                        
+
+                        DONE
+                        -->
                             </md-content>
                         </md-tab>
                     </md-tabs>

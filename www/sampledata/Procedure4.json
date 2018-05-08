@@ -1,0 +1,24 @@
+{
+"name": "Procedure X",
+"steps": [
+    {
+        "id": "1",
+        "text": "Unstow from Dental Subpack: Elevator,301 (Dental-4) 34S (Dental-4).",
+        "media": [
+            {
+                "id": "1",
+                "title": "Tooth Extraction Image",
+                "type": "image",
+                "path": "http://www.medhalt.com/procedure/ckeditor/plugins/imageuploader/uploads/17707ba2.jpg"
+            },
+            {
+                "id": "2",
+                "title": "Tooth Extraction Video",
+                "type": "video",
+                "path": "https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=0"
+            }
+        ]
+    }
+],
+    "notes": []
+}

@@ -1,9 +1,17 @@
-<div class="modal-header">
-    <h4 class="modal-title">Video Capture</h4>
-</div>
-<div style="margin: 5%;">
-    <input type="file" accept="video/*" capture="camera" id="recorder">
-    <video id="player" controls></video>
+<div ng-init="initVideoModal()">
+    <div class="modal-header">
+        <h4 class="modal-title">Video Capture</h4>
+    </div>
+    <div style="margin: 5%;">
+        <form ref='uploadForm' target="result" id='uploadForm' action='http://localhost:5000/uploadVideo' method='post' encType="multipart/form-data">
+            <input type="file" name="videoFile" accept="video/*" onchange="angular.element(this).scope().videoSelected(this)" capture="camera"
+                id="recorder">
+            <md-button type='submit' class="md-raised pull-right" value='Upload!'>
+                <i class="fas fa-upload"></i> Upload Video</md-button>
+            <video ng-src="{{vidSrc}}" id="player" controls></video>
+            <iframe frameborder="1" style="height: 6rem;" name="result"></iframe>
+        </form>
+    </div>
 </div>
 <script>
     console.log('Video script loaded');
@@ -12,6 +20,7 @@
 
     recorder.addEventListener('change', function (e) {
         var file = e.target.files[0];
+        console.log('data:' + file);
         player.src = URL.createObjectURL(file);
     });
 </script>
