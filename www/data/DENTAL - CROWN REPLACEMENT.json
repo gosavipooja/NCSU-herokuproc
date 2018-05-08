@@ -103,6 +103,13 @@
                 }
             ],
             "timer": false
+        },
+        {
+            "id": "WARN",
+            "text": "This is a sample warning",
+            "media": [],
+            "comments": [],
+            "timer": false
         }
     ],
     "notes": [
