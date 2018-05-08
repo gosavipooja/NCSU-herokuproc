@@ -3,7 +3,7 @@
         <h4 class="modal-title">Image Capture</h4>
     </div>
     <div style="margin: 5%;">
-        <form ref='uploadForm' target="result" id='uploadForm' action='http://localhost:5000/uploadImage' method='post' encType="multipart/form-data">
+        <form ref='uploadForm' target="result" id='uploadForm' action='https://hybrid-proc.herokuapp.com/uploadImage' method='post' encType="multipart/form-data">
             <input type="file" name="imgFile" accept="image/*" onchange="angular.element(this).scope().imageSelected(this)" id="file-input">
             <md-button type='submit' class="md-raised pull-right" value='Upload!'>
                 <i class="fas fa-upload"></i> Upload Image</md-button>

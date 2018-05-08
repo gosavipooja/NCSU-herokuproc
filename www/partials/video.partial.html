@@ -3,7 +3,7 @@
         <h4 class="modal-title">Video Capture</h4>
     </div>
     <div style="margin: 5%;">
-        <form ref='uploadForm' target="result" id='uploadForm' action='http://localhost:5000/uploadVideo' method='post' encType="multipart/form-data">
+        <form ref='uploadForm' target="result" id='uploadForm' action='https://hybrid-proc.herokuapp.com/uploadVideo' method='post' encType="multipart/form-data">
             <input type="file" name="videoFile" accept="video/*" onchange="angular.element(this).scope().videoSelected(this)" capture="camera"
                 id="recorder">
             <md-button type='submit' class="md-raised pull-right" value='Upload!'>
