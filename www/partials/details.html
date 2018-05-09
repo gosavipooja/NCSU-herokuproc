@@ -24,9 +24,9 @@
                 </tr>
                 <tbody>
                     <tr ng-repeat="pstep in procedure.steps" ng-click="openStep(pstep)" on-long-press='itemOnLongPress(pstep)' on-touch-end='itemOnTouchEnd(pstep)'>
-                        <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN'}">{{pstep.id}}</td>
-                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN'}">{{pstep.text}}</td>
-                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN'}">
+                        <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id)}">{{pstep.id}}</td>
+                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id)}">{{pstep.text}}</td>
+                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id)}">
                             <md-menu ng-if="pstep.id != 'WARN'">
                                 <md-button aria-label="plus" ng-click="openMenu($mdMenu, $event)" style="min-width: 5% !important;">
                                     <i class="fas fa-plus-circle"></i>
@@ -62,76 +62,91 @@
 
             <div data-ng-cloak>
                 <md-content>
-                    <md-tabs md-dynamic-height md-border-bottom>
-                        <md-tab label="Notes {{'['+procedure.notes.length+']'}}">
-                            <md-content class="md-padding">
-                                <md-list flex>
-                                    <md-list-item ng-if="procedure && procedure.notes && procedure.notes.length > 0" class="md-1-line" ng-repeat="note in procedure.notes">
-                                        <div class="md-list-item-text" layout="column">
-                                            <p>{{note.text}}</p>
-                                        </div>
-                                    </md-list-item>
-                                    <md-list-item ng-if="!procedure || !procedure.notes || procedure.notes.length == 0" class="md-1-line">
-                                        <div class="md-list-item-text" layout="column">
-                                            <p>No Notes for this procedure.</p>
-                                        </div>
-                                    </md-list-item>
-                                </md-list>
-                                <p></p>
-                            </md-content>
-                        </md-tab>
-                        <md-tab label="Media {{'['+selected_step.media.length+']'}}">
-                            <md-content class="md-padding">
-                                <md-list flex>
-                                    <md-list-item ng-if="selected_step && selected_step.media && selected_step.media.length > 0" class="md-1-line" ng-repeat="mediafile in selected_step.media">
-                                        <div class="md-list-item-text" layout="column">
-                                            <div ng-if="mediafile.type == 'image'">
-                                                <img ng-src="{{cleanPath(mediafile.path)}}" alt="{{mediafile.title}}">
-                                                <br>
-                                                <span>{{mediafile.title}}</span>
+                    <md-tabs md-dynamic-height md-border-bottom style="justify-content: space-around;">
+                        <md-tab>
+                            <md-tab-label>
+                                <i class="fas fa-info"></i>&nbsp;&nbsp;&nbsp;{{'['+procedure.notes.length+']'}}</md-tab-label>
+                            <md-tab-body>
+                                <md-content class="md-padding">
+                                    <md-list flex>
+                                        <md-list-item ng-if="procedure && procedure.notes && procedure.notes.length > 0" class="md-1-line" ng-repeat="note in procedure.notes">
+                                            <div class="md-list-item-text" layout="column">
+                                                <p>{{note.text}}</p>
                                             </div>
-                                            <br>
-                                            <div ng-if="mediafile.type == 'video'">
-                                                <iframe ng-src="{{ cleanPath(mediafile.path) }}" frameborder="0"></iframe>
-                                                <br>
-                                                <span>{{mediafile.title}}</span>
+                                        </md-list-item>
+                                        <md-list-item ng-if="!procedure || !procedure.notes || procedure.notes.length == 0" class="md-1-line">
+                                            <div class="md-list-item-text" layout="column">
+                                                <p>No Notes for this procedure.</p>
                                             </div>
-                                        </div>
-                                    </md-list-item>
-                                    <md-list-item ng-if="!selected_step || !selected_step.media || selected_step.media.length == 0" class="md-1-line">
-                                        <div class="md-list-item-text" layout="column">
-                                            <p>No media for this step.</p>
-                                        </div>
-                                    </md-list-item>
-                                </md-list>
-                            </md-content>
+                                        </md-list-item>
+                                    </md-list>
+                                    <p></p>
+                                </md-content>
+                            </md-tab-body>
                         </md-tab>
-                        <md-tab label="Comments {{'['+selected_step.comments.length+']'}}">
-                            <md-content class="md-padding">
-                                <md-list flex>
-                                    <md-list-item ng-if="selected_step && selected_step.comments && selected_step.comments.length > 0" class="md-1-line" ng-repeat="comment in selected_step.comments">
-                                        <div class="md-list-item-text" layout="column">
-                                            <p>{{ comment.text }}</p>
-                                        </div>
-                                    </md-list-item>
-                                    <md-list-item ng-if="!selected_step || !selected_step.comments || selected_step.comments.length == 0" class="md-1-line">
-                                        <div class="md-list-item-text" layout="column">
-                                            <p>No Comments for this Step.</p>
-                                        </div>
-                                    </md-list-item>
-                                </md-list>
-                            </md-content>
+                        <md-tab>
+                            <md-tab-label>
+                                <i class="far fa-play-circle"></i>&nbsp;&nbsp;&nbsp;{{'['+selected_step.media.length+']'}}</md-tab-label>
+                            <md-tab-body>
+                                <md-content class="md-padding">
+                                    <md-list flex>
+                                        <md-list-item ng-if="selected_step && selected_step.media && selected_step.media.length > 0" class="md-1-line" ng-repeat="mediafile in selected_step.media">
+                                            <div class="md-list-item-text" layout="column">
+                                                <div ng-if="mediafile.type == 'image'">
+                                                    <img ng-src="{{cleanPath(mediafile.path)}}" alt="{{mediafile.title}}">
+                                                    <br>
+                                                    <span>{{mediafile.title}}</span>
+                                                </div>
+                                                <br>
+                                                <div ng-if="mediafile.type == 'video'">
+                                                    <iframe ng-src="{{ cleanPath(mediafile.path) }}" frameborder="0"></iframe>
+                                                    <br>
+                                                    <span>{{mediafile.title}}</span>
+                                                </div>
+                                            </div>
+                                        </md-list-item>
+                                        <md-list-item ng-if="!selected_step || !selected_step.media || selected_step.media.length == 0" class="md-1-line">
+                                            <div class="md-list-item-text" layout="column">
+                                                <p>No media for this step.</p>
+                                            </div>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-content>
+                            </md-tab-body>
                         </md-tab>
-                        <md-tab label="Timer">
-                            <md-content class="md-padding">
-                                <div ng-if="selected_step && selected_step.timer">
-                                    <h1 class="md-display-2">Set Timer</h1>
-                                    <p id='timerPlaceholder'></p>
-                                </div>
-                                <!-- <div ng-if="!selected_step || !selected_step.timer">No Timer needed for this step.</div> -->
-                                <div stopwatch title="Stopwatch #2" time="sharedTime"></div>
-                                <hr />
-                                <script type="text/ng-template" id="stopwatch.html">
+                        <md-tab>
+                            <md-tab-label>
+                                <i class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;{{'['+selected_step.comments.length+']'}}</md-tab-label>
+                            <md-tab-body>
+                                <md-content class="md-padding">
+                                    <md-list flex>
+                                        <md-list-item ng-if="selected_step && selected_step.comments && selected_step.comments.length > 0" class="md-1-line" ng-repeat="comment in selected_step.comments">
+                                            <div class="md-list-item-text" layout="column">
+                                                <p>{{ comment.text }}</p>
+                                            </div>
+                                        </md-list-item>
+                                        <md-list-item ng-if="!selected_step || !selected_step.comments || selected_step.comments.length == 0" class="md-1-line">
+                                            <div class="md-list-item-text" layout="column">
+                                                <p>No Comments for this Step.</p>
+                                            </div>
+                                        </md-list-item>
+                                    </md-list>
+                                </md-content>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>
+                                <i class="fas fa-wrench"></i>&nbsp;&nbsp;&nbsp;</md-tab-label>
+                            <md-tab-body>
+                                <md-content class="md-padding">
+                                    <div ng-if="selected_step && selected_step.timer">
+                                        <h1 class="md-display-2">Set Timer</h1>
+                                        <p id='timerPlaceholder'></p>
+                                    </div>
+                                    <!-- <div ng-if="!selected_step || !selected_step.timer">No Timer needed for this step.</div> -->
+                                    <div stopwatch title="Stopwatch #2" time="sharedTime"></div>
+                                    <hr />
+                                    <script type="text/ng-template" id="stopwatch.html">
                                   <!-- <div><strong>Current Time: </strong>{{currentTime | date:'h:mm:ss a'}}</div> -->
                                   <div ng-if="swctrl && swctrl.getElapsedMs()"><strong>Elapsed Time: </strong>{{swctrl.getElapsedMs()}} ms</div>
                                   <button id="start" class="btn btn-success" ng-click="swctrl.start()">Start</button>
@@ -141,7 +156,8 @@
                                   <br>
                                   <div class="white-space-pre-line">Lap is: {{lapVal}}</div>
                                 </script>
-                            </md-content>
+                                </md-content>
+                            </md-tab-body>
                         </md-tab>
                     </md-tabs>
                 </md-content>

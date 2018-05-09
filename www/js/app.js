@@ -40,6 +40,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.selected_step = {};
     $scope.fileUpload = false;
     $scope.procNumber = {};
+    $scope.completed_steps = {};
 
     $scope.init = function () {
         console.log('Init...');
@@ -47,10 +48,15 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
             console.log('Stored data found.');
             $scope.data = Storage.get('data');
             $scope.proclist = Storage.get('proclist');
+            $scope.completed_steps = Storage.get('completed_steps');
+            if (typeof $scope.completed_steps == undefined || $scope.completed_steps == null) {
+                $scope.completed_steps = {};
+            }
         } else {
             console.log('No stored data found...  reading json files from DB.');
             $scope.readDBJsonFiles();
             console.log('Data is set');
+            $scope.completed_steps = {};
         }
         $scope.procedure = Storage.get('procedure');
         $scope.selected_step = Storage.get('selected_step');
@@ -70,16 +76,6 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
             console.log('Displaying step');
             Storage.set('selected_step', pstep);
             $scope.selected_step = pstep;
-            console.log('selected step is: ' + Storage.get('selected_step').id);
-        }
-    }
-
-    $scope.completeStep = function (pstep) {
-        if (pstep.id != 'WARN') {
-            console.log('Displaying step');
-            Storage.set('selected_step', pstep);
-            $scope.selected_step = pstep;
-            $scope.selected_step = {color: '#24964C'};//Check this?
             console.log('selected step is: ' + Storage.get('selected_step').id);
         }
     }
@@ -203,8 +199,15 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     };
 
     $scope.markComplete = function (step) {
-        $scope.completeStep(step);
-        console.log('Marking Step: ' + step.id + ' as Complete');
+        $scope.openStep(step);
+        if (step.id != 'WARN') {
+            console.log('Marking Step: ' + step.id + ' as Complete');
+            if (typeof $scope.completed_steps[$scope.procedure.name] == undefined || $scope.completed_steps[$scope.procedure.name] == null) {
+                $scope.completed_steps[$scope.procedure.name] = [];
+            }
+            $scope.completed_steps[$scope.procedure.name].push(step.id);
+            Storage.set('completed_steps', $scope.completed_steps[$scope.procedure.name]);
+        }
     };
 
     $scope.markFailed = function (step) {

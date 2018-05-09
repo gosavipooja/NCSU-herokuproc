@@ -140,6 +140,16 @@ td.warn {
     color: #ffffff;
 }
 
+td.completed {
+    border: 0.5px dotted #0f0f0f;
+    padding: 0.5rem;
+    margin-left: 1.5rem;
+    text-indent: 1.5rem;
+    text-align: left;
+    background-color: #979797 !important;
+    color: #ffffff;
+}
+
 td.selected {
     background-color: #52658F;
     color: #F7F5E6;
