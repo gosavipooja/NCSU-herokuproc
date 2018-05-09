@@ -1,0 +1,36 @@
+<style>
+    table {
+        border: none !important;
+        border-collapse: collapse;
+    }
+
+    td,
+    th {
+        border: none !important;
+        padding: 0;
+    }
+</style>
+
+<div class="modal-header">
+    <h4 class="modal-title">Add Comment</h4>
+</div>
+<div style="margin: 5%;">
+    <form ref='commentForm' target="result" id='commentForm' action='https://hybrid-proc.herokuapp.com/comment' method='post' encType="multipart/form-data">
+        <table>
+            <tr>
+                <td>
+                    Comment:
+                </td>
+                <td>
+                    <input type="text" name="comment">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <md-button type='submit' class="md-raised pull-right" value='Upload!'>
+                        <i class="fas fa-upload"></i> Add Comment</md-button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

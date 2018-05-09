@@ -1,11 +1,13 @@
 <div ng-init="initVideoModal()">
     <div class="modal-header">
-        <h4 class="modal-title">Video Capture</h4>
+        <h4 class="modal-title">{{procedure.name}}: Video Capture</h4>
     </div>
     <div style="margin: 5%;">
         <form ref='uploadForm' target="result" id='uploadForm' action='https://hybrid-proc.herokuapp.com/uploadVideo' method='post' encType="multipart/form-data">
             <input type="file" name="videoFile" accept="video/*" onchange="angular.element(this).scope().videoSelected(this)" capture="camera"
                 id="recorder">
+            <input type="text" name="procNumber" disabled hidden ng-model="procNumber">
+            <input type="text" name="stepNumber" disabled hidden ng-model="selected_step.id">
             <md-button type='submit' class="md-raised pull-right" value='Upload!'>
                 <i class="fas fa-upload"></i> Upload Video</md-button>
             <video ng-src="{{vidSrc}}" id="player" controls></video>

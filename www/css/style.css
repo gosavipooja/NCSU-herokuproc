@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+head {
+    background-color: #333A56;
+}
+
 /*This just stops me getting horizontal scrolling if anything overflows the width*/
 body {
     overflow-x: hidden;
@@ -132,12 +136,13 @@ td.warn {
     margin-left: 1.5rem;
     text-indent: 1.5rem;
     text-align: left;
-    background-color: rgb(252, 212, 212);
+    background-color: #990000;
+    color: #ffffff;
 }
 
 td.selected {
-    background-color: rgb(82, 192, 255);
-    color: white;
+    background-color: #52658F;
+    color: #F7F5E6;
 }
 
 .back-button {
@@ -148,4 +153,8 @@ td.selected {
 
 #round {
     border-radius: 50%;
+}
+
+div.white-space-pre-line {
+    white-space: pre-line;
 }

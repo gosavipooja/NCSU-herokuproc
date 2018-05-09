@@ -39,6 +39,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.procedure = {};
     $scope.selected_step = {};
     $scope.fileUpload = false;
+    $scope.procNumber = {};
 
     $scope.init = function () {
         console.log('Init...');
@@ -53,6 +54,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
         }
         $scope.procedure = Storage.get('procedure');
         $scope.selected_step = Storage.get('selected_step');
+        $scope.procNumber = Storage.get('procNumber');
     };
 
     $scope.itemOnLongPress = function (pstep) {
@@ -72,8 +74,19 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
         }
     }
 
+    $scope.completeStep = function (pstep) {
+        if (pstep.id != 'WARN') {
+            console.log('Displaying step');
+            Storage.set('selected_step', pstep);
+            $scope.selected_step = pstep;
+            $scope.selected_step = {color: '#24964C'};//Check this?
+            console.log('selected step is: ' + Storage.get('selected_step').id);
+        }
+    }
+
     $scope.openProc = function (proc) {
-        console.log('Opening proc: ' + JSON.stringify(proc.name))
+        console.log('Opening proc: ' + JSON.stringify(proc.name));
+        Storage.set('procNumber', proc.id);
         Storage.set('procedure', JSON.parse($scope.data[proc.name + '.json']));
         $location.path('details');
     };
@@ -120,6 +133,18 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.openUploadModal = function (data) {
         $scope.modalInstance = $modal.open({
             templateUrl: 'partials/upload.modal.html',
+            controller: 'index',
+            resolve: {
+                data: function () {
+                    return data === null ? {} : data;
+                }
+            }
+        }).result.then(function () { }, function (res) { });
+    };
+
+    $scope.openCommentModal = function (data) {
+        $scope.modalInstance = $modal.open({
+            templateUrl: 'partials/comment.modal.html',
             controller: 'index',
             resolve: {
                 data: function () {
@@ -178,7 +203,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     };
 
     $scope.markComplete = function (step) {
-        $scope.openStep(step);
+        $scope.completeStep(step);
         console.log('Marking Step: ' + step.id + ' as Complete');
     };
 
@@ -207,19 +232,29 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
 
     $scope.addComment = function (step) {
         $scope.openStep(step);
+        $scope.openCommentModal(step);
         console.log('Adding comment for step: ' + step.id);
     };
 
     $scope.initImageModal = function () {
         console.log('init image modal');
+        $scope.procedure = Storage.get('procedure');
+        $scope.selected_step = Storage.get('selected_step');
+        $scope.procNumber = Storage.get('procNumber');
     };
 
     $scope.initVideoModal = function () {
         console.log('init video modal');
+        $scope.procedure = Storage.get('procedure');
+        $scope.selected_step = Storage.get('selected_step');
+        $scope.procNumber = Storage.get('procNumber');
     };
 
     $scope.initAudioModal = function () {
         console.log('init audio modal');
+        $scope.procedure = Storage.get('procedure');
+        $scope.selected_step = Storage.get('selected_step');
+        $scope.procNumber = Storage.get('procNumber');
     };
 
     $scope.imgSrc = '';
@@ -372,7 +407,7 @@ app.directive('stopwatch', function () {
 
             $scope.lapVal = 0;
             $scope.printLap = function (t) {
-                $scope.lapVal = $scope.lapVal + '\<br\>'+ t;
+                $scope.lapVal = $scope.lapVal + '\n' + t;
                 console.log('time is: ' + t);
             }
 

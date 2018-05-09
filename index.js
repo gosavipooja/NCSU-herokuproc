@@ -30,7 +30,10 @@ server.post('/uploadImage', function (req, res) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     return res.status(400).send('No image files to upload.');
   } else {
+    let procNumber = req.body.procNumber;
+    let stepNumber = req.body.stepNumber;
     let imgFile = req.files.imgFile;
+    console.log('Proc Number: ' + procNumber + ', Step Number: ' + stepNumber + ', Image File: ' + imgFile);
     if (imgFile) {
       console.log('dummy image response!');
       res.header('Access-Control-Allow-Origin', '*');
@@ -55,7 +58,10 @@ server.post('/uploadVideo', function (req, res) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     return res.status(400).send('No video files to upload.');
   } else {
+    let procNumber = req.body.procNumber;
+    let stepNumber = req.body.stepNumber;
     let videoFile = req.files.videoFile;
+    console.log('Proc Number: ' + procNumber + ', Step Number: ' + stepNumber + ', Video File: ' + videoFile);
     if (videoFile) {
       console.log('dummy video response!');
       res.header('Access-Control-Allow-Origin', '*');
@@ -80,7 +86,10 @@ server.post('/uploadAudio', function (req, res) {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     return res.status(400).send('No audio files to upload.');
   } else {
+    let procNumber = req.body.procNumber;
+    let stepNumber = req.body.stepNumber;
     let audioFile = req.files.audioFile;
+    console.log('Proc Number: ' + procNumber + ', Step Number: ' + stepNumber + ', Audio File: ' + audioFile);
     if (audioFile) {
       console.log('dummy audio response!');
       res.header('Access-Control-Allow-Origin', '*');

@@ -1,10 +1,12 @@
 <div ng-init="initAudioModal()">
     <div class="modal-header">
-        <h4 class="modal-title">Audio Capture</h4>
+        <h4 class="modal-title">{{procedure.name}}: Audio Capture</h4>
     </div>
     <div style="margin: 5%;">
         <form ref='uploadForm' target="result" id='uploadForm' action='https://hybrid-proc.herokuapp.com/uploadAudio' method='post' encType="multipart/form-data">
             <input type="file" name="audioFile" accept="audio/*" onchange="angular.element(this).scope().audioSelected(this)" id="recorder">
+            <input type="text" name="procNumber" disabled hidden ng-model="procNumber">
+            <input type="text" name="stepNumber" disabled hidden ng-model="selected_step.id">
             <md-button type='submit' class="md-raised pull-right" value='Upload!'>
                 <i class="fas fa-upload"></i> Upload Audio</md-button>
             <audio ng-src="{{audSrc}}" id="player" controls></audio>
