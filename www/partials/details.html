@@ -15,7 +15,6 @@
     </md-toolbar>
     <div class="flex-Container">
         <div class="Left">
-            <h3>Steps for the Procedure</h3>
             <table>
                 <tr>
                     <th>#</th>
@@ -24,9 +23,9 @@
                 </tr>
                 <tbody>
                     <tr ng-repeat="pstep in procedure.steps" ng-click="openStep(pstep)" on-long-press='itemOnLongPress(pstep)' on-touch-end='itemOnTouchEnd(pstep)'>
-                        <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id)}">{{pstep.id}}</td>
-                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id)}">{{pstep.text}}</td>
-                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id)}">
+                        <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">{{pstep.id}}</td>
+                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">{{pstep.text}}</td>
+                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">
                             <md-menu ng-if="pstep.id != 'WARN'">
                                 <md-button aria-label="plus" ng-click="openMenu($mdMenu, $event)" style="min-width: 5% !important;">
                                     <i class="fas fa-plus-circle"></i>

@@ -41,6 +41,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.fileUpload = false;
     $scope.procNumber = {};
     $scope.completed_steps = {};
+    $scope.flagged_steps={};
 
     $scope.init = function () {
         console.log('Init...');
@@ -52,11 +53,16 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
             if (typeof $scope.completed_steps == undefined || $scope.completed_steps == null) {
                 $scope.completed_steps = {};
             }
+            $scope.flagged_steps = Storage.get('flagged_steps');
+            if (typeof $scope.flagged_steps == undefined || $scope.flagged_steps == null) {
+                $scope.flagged_steps = {};
+            }
         } else {
             console.log('No stored data found...  reading json files from DB.');
             $scope.readDBJsonFiles();
             console.log('Data is set');
             $scope.completed_steps = {};
+            $scope.flagged_steps = {};
         }
         $scope.procedure = Storage.get('procedure');
         $scope.selected_step = Storage.get('selected_step');
@@ -212,7 +218,14 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
 
     $scope.markFailed = function (step) {
         $scope.openStep(step);
-        console.log('Marking Step: ' + step.id + ' as Failed');
+        if (step.id != 'WARN') {
+            console.log('Marking Step: ' + step.id + ' as Failed');
+            if (typeof $scope.flagged_steps[$scope.procedure.name] == undefined || $scope.flagged_steps[$scope.procedure.name] == null) {
+                $scope.flagged_steps[$scope.procedure.name] = [];
+            }
+            $scope.flagged_steps[$scope.procedure.name].push(step.id);
+            Storage.set('flagged_steps', $scope.flagged_steps[$scope.procedure.name]);
+        }
     };
 
     $scope.addImage = function (step) {
