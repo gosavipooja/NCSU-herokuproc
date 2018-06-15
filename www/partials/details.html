@@ -5,12 +5,12 @@
         <md-button class="md-raised md-primary back-button" ng-click="goBack()"><i class="fas fa-angle-left"></i></md-button>
         <h1>{{procedure.name}}</h1>
     </div> -->
-    <md-toolbar style="background-color: #333A56; color: #E8E8E8">
+    <md-toolbar style="background-color: #333A56; color: #E8E8E8;">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button" ng-click="goBack()" aria-label="Go Back">
-                <i class="fas fa-angle-left"></i>
+                <i class="fas fa-angle-left fa-2x"></i>
             </md-button>
-            <span style="text-align: center;" flex>{{procedure.name}}</span>
+            <span style="text-align: center;" flex><strong>{{procedure.name}}</strong></span>
         </div>
     </md-toolbar>
     <div class="flex-Container">
@@ -23,19 +23,19 @@
                 </tr>
                 <tbody>
                     <tr ng-repeat="pstep in procedure.steps" ng-click="openStep(pstep)" on-long-press='itemOnLongPress(pstep)' on-touch-end='itemOnTouchEnd(pstep)'>
-                        <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">{{pstep.id}}</td>
-                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">{{pstep.text}}</td>
+                        <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">&nbsp;{{pstep.id}}</td>
+                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">&nbsp;{{pstep.text}}&nbsp;</td>
                         <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">
                             <md-menu ng-if="pstep.id != 'WARN'">
-                                <md-button aria-label="plus" ng-click="openMenu($mdMenu, $event)" style="min-width: 5% !important;">
+                                <md-button aria-label="plus" ng-click="openMenu($mdMenu, $event)" style="min-width: 10% !important;">
                                     <i class="fas fa-plus-circle"></i>
                                 </md-button>
                                 <md-menu-content width="4">
                                     <md-menu-item>
-                                        <md-button ng-click="markComplete(pstep)">Mark as Complete</md-button>
+                                        <md-button ng-click="markComplete(pstep)">Mark Complete</md-button>
                                     </md-menu-item>
                                     <md-menu-item>
-                                        <md-button ng-click="markFailed(pstep)">Mark as Failed</md-button>
+                                        <md-button ng-click="markFailed(pstep)">Mark Flagged</md-button>
                                     </md-menu-item>
                                     <md-menu-item>
                                         <md-button ng-click="addImage(pstep)">Add Image</md-button>
@@ -64,7 +64,7 @@
                     <md-tabs md-dynamic-height md-border-bottom style="justify-content: space-around;">
                         <md-tab>
                             <md-tab-label>
-                                <i class="fas fa-info"></i>&nbsp;&nbsp;&nbsp;{{'['+procedure.notes.length+']'}}</md-tab-label>
+                                <i class="fas fa-info fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color:#333A56 !important; font-size: 18px !important;">{{procedure.notes.length}}</strong></md-tab-label>
                             <md-tab-body>
                                 <md-content class="md-padding">
                                     <md-list flex>
@@ -85,7 +85,7 @@
                         </md-tab>
                         <md-tab>
                             <md-tab-label>
-                                <i class="far fa-play-circle"></i>&nbsp;&nbsp;&nbsp;{{'['+selected_step.media.length+']'}}</md-tab-label>
+                                <i class="far fa-play-circle fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color:#333A56 !important; font-size: 18px !important;">{{selected_step.media.length}}</strong></md-tab-label>
                             <md-tab-body>
                                 <md-content class="md-padding">
                                     <md-list flex>
@@ -115,7 +115,7 @@
                         </md-tab>
                         <md-tab>
                             <md-tab-label>
-                                <i class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;{{'['+selected_step.comments.length+']'}}</md-tab-label>
+                                <i class="fas fa-user fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color: #333A56 !important; font-size: 18px !important;">{{selected_step.comments.length}}</strong></md-tab-label>
                             <md-tab-body>
                                 <md-content class="md-padding">
                                     <md-list flex>
@@ -135,7 +135,7 @@
                         </md-tab>
                         <md-tab>
                             <md-tab-label>
-                                <i class="fas fa-wrench"></i>&nbsp;&nbsp;&nbsp;</md-tab-label>
+                                <i class="fas fa-wrench fa-lg"></i></md-tab-label>
                             <md-tab-body>
                                 <md-content class="md-padding">
                                     <div ng-if="selected_step && selected_step.timer">
