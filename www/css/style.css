@@ -140,12 +140,25 @@ td.warn {
     color: #ffffff;
 }
 
+td.caution {
+    border: 0.5px dotted #0f0f0f;
+    padding: 0.5rem;
+    text-align: left;
+    background-color: #d5d538;
+    color: #ffffff;
+}
+
 td.completed {
     /* border: 0.5px dotted #0f0f0f;
     padding: 0.5rem;
     margin-left: 1.5rem; */
     background-color: #979797 !important;
     color: #ffffff;
+}
+
+td.unmarkcompleted {
+    background-color: #ffffff !important;
+    color: #000000;
 }
 
 td.failed {
@@ -173,4 +186,17 @@ td.selected {
 
 div.white-space-pre-line {
     white-space: pre-line;
+}
+
+md-tab-item > i + strong {
+    border-radius: 50%;
+    padding: 0.1rem 0.7rem;
+    position: relative;
+    left: -0.8rem;
+    top: -0.8rem;
+}
+
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    color: red !important;
+    background-color:red !important;
 }

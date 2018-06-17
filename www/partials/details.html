@@ -23,10 +23,10 @@
                 </tr>
                 <tbody>
                     <tr ng-repeat="pstep in procedure.steps" ng-click="openStep(pstep)" on-long-press='itemOnLongPress(pstep)' on-touch-end='itemOnTouchEnd(pstep)'>
-                        <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">&nbsp;{{pstep.id}}</td>
-                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">&nbsp;{{pstep.text}}&nbsp;</td>
-                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'completed': completed_steps[procedure.name].includes(pstep.id), 'failed': flagged_steps[procedure.name].includes(pstep.id)}">
-                            <md-menu ng-if="pstep.id != 'WARN'">
+                        <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'failed': flagged_steps[procedure.name].includes(pstep.id), 'completed': completed_steps[procedure.name].includes(pstep.id), 'unmarkComplete': uncompleted_steps[procedure.name].includes(pstep.id), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'caution': pstep.id == 'CAUTION'}">&nbsp;{{pstep.id}}</td>
+                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'failed': flagged_steps[procedure.name].includes(pstep.id), 'completed': completed_steps[procedure.name].includes(pstep.id), 'unmarkComplete': uncompleted_steps[procedure.name].includes(pstep.id), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'caution': pstep.id == 'CAUTION'}">&nbsp;{{pstep.text}}&nbsp;</td>
+                        <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'failed': flagged_steps[procedure.name].includes(pstep.id), 'completed': completed_steps[procedure.name].includes(pstep.id), 'unmarkComplete': uncompleted_steps[procedure.name].includes(pstep.id), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'caution': pstep.id == 'CAUTION'}">
+                            <md-menu ng-if="pstep.id != 'WARN' && pstep.id != 'CAUTION'">
                                 <md-button aria-label="plus" ng-click="openMenu($mdMenu, $event)" style="min-width: 10% !important;">
                                     <i class="fas fa-plus-circle"></i>
                                 </md-button>
@@ -36,6 +36,9 @@
                                     </md-menu-item>
                                     <md-menu-item>
                                         <md-button ng-click="markFailed(pstep)">Mark Flagged</md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="unmarkComplete(pstep)">Unmark/Unflag</md-button>
                                     </md-menu-item>
                                     <md-menu-item>
                                         <md-button ng-click="addImage(pstep)">Add Image</md-button>
@@ -85,7 +88,7 @@
                         </md-tab>
                         <md-tab>
                             <md-tab-label>
-                                <i class="far fa-play-circle fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color:#333A56 !important; font-size: 18px !important;">{{selected_step.media.length}}</strong></md-tab-label>
+                                <i class="far fa-play-circle fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color:#cc6600 !important; font-size: 18px !important;">{{selected_step.media.length}}</strong></md-tab-label>
                             <md-tab-body>
                                 <md-content class="md-padding">
                                     <md-list flex>
@@ -115,7 +118,7 @@
                         </md-tab>
                         <md-tab>
                             <md-tab-label>
-                                <i class="fas fa-user fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color: #333A56 !important; font-size: 18px !important;">{{selected_step.comments.length}}</strong></md-tab-label>
+                                <i class="fas fa-user fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color: #cc6600 !important; font-size: 18px !important;">{{selected_step.comments.length}}</strong></md-tab-label>
                             <md-tab-body>
                                 <md-content class="md-padding">
                                     <md-list flex>
