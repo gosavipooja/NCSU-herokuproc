@@ -212,7 +212,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
 
     $scope.markComplete = function (step) {
         $scope.openStep(step);
-        if (pstep.id != 'WARN' && pstep.id != 'CAUTION') {
+        if (step.id != 'WARN' && step.id != 'CAUTION') {
             console.log('Marking Step: ' + step.id + ' as Complete');
             if (typeof $scope.completed_steps[$scope.procedure.name] == undefined || $scope.completed_steps[$scope.procedure.name] == null) {
                 $scope.completed_steps[$scope.procedure.name] = [];
@@ -234,7 +234,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
 
     $scope.markFailed = function (step) {
         $scope.openStep(step);
-        if (pstep.id != 'WARN' && pstep.id != 'CAUTION') {
+        if (step.id != 'WARN' && step.id != 'CAUTION') {
             console.log('Marking Step: ' + step.id + ' as Failed');
             if (typeof $scope.completed_steps[$scope.procedure.name] == undefined || $scope.completed_steps[$scope.procedure.name] == null) {
                 $scope.completed_steps[$scope.procedure.name] = [];
@@ -256,7 +256,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
 
     $scope.unmarkComplete = function (step) {
         $scope.openStep(step);
-        if (pstep.id != 'WARN' && pstep.id != 'CAUTION') {
+        if (step.id != 'WARN' && step.id != 'CAUTION') {
             console.log('Marking Step: ' + step.id + ' as Un-complete');
             if (typeof $scope.completed_steps[$scope.procedure.name] == undefined || $scope.completed_steps[$scope.procedure.name] == null) {
                 $scope.completed_steps[$scope.procedure.name] = [];
