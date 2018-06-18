@@ -88,7 +88,7 @@
                         </md-tab>
                         <md-tab>
                             <md-tab-label>
-                                <i class="far fa-play-circle fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color:#cc6600 !important; font-size: 18px !important;">{{selected_step.media.length}}</strong></md-tab-label>
+                                <i class="far fa-play-circle fa-lg"></i>&nbsp;<strong class = "badge" style="color: #ffffff; background-color:#cc6600 !important; font-size: 18px !important;" ng-show="selected_step.media.length > 0">{{selected_step.media.length}}</strong></md-tab-label>
                             <md-tab-body>
                                 <md-content class="md-padding">
                                     <md-list flex>
@@ -118,7 +118,7 @@
                         </md-tab>
                         <md-tab>
                             <md-tab-label>
-                                <i class="fas fa-user fa-lg"></i>&nbsp;<strong style="color: #ffffff; background-color: #cc6600 !important; font-size: 18px !important;">{{selected_step.comments.length}}</strong></md-tab-label>
+                                <i class="fas fa-user fa-lg"></i>&nbsp;<strong class="badge" style="color: #ffffff; background-color: #cc6600 !important; font-size: 18px !important;" ng-show="selected_step.comments.length > 0">{{selected_step.comments.length}}</strong></md-tab-label>
                             <md-tab-body>
                                 <md-content class="md-padding">
                                     <md-list flex>
