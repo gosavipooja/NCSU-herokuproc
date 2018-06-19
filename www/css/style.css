@@ -144,7 +144,7 @@ td.caution {
     border: 0.5px dotted #0f0f0f;
     padding: 0.5rem;
     text-align: left;
-    background-color: #d5d538;
+    background-color: #f4b350;
     color: #ffffff;
 }
 
@@ -152,8 +152,8 @@ td.completed {
     /* border: 0.5px dotted #0f0f0f;
     padding: 0.5rem;
     margin-left: 1.5rem; */
-    background-color: #979797 !important;
-    color: #ffffff;
+    background-color: #838181 !important;
+    color: #F7F5E6;
 }
 
 td.unmarkcompleted {
@@ -166,7 +166,7 @@ td.failed {
     padding: 0.5rem;
     margin-left: 1.5rem; */
     background-color: #cc6600 !important;
-    color: #ffffff;
+    color: #F7F5E6;
 }
 
 td.selected {
@@ -176,7 +176,7 @@ td.selected {
 
 tr.selected {
     border: solid 3px !important;
-    border-color: #a3fa16 !important;
+    border-color: #52658f !important;
 }
 
 .back-button {
