@@ -22,7 +22,7 @@
                     <th></th>
                 </tr>
                 <tbody>
-                    <tr ng-repeat="pstep in procedure.steps" ng-click="openStep(pstep)" on-long-press='itemOnLongPress(pstep)' on-touch-end='itemOnTouchEnd(pstep)'>
+                    <tr ng-repeat="pstep in procedure.steps" ng-class="{'selected': pstep.id == selected_step.id}" ng-click="openStep(pstep)" on-long-press='itemOnLongPress(pstep)' on-touch-end='itemOnTouchEnd(pstep)'>
                         <td class='sno' ng-class="{'indented_in': pstep.id.includes('.'), 'failed': flagged_steps[procedure.name].includes(pstep.id), 'completed': completed_steps[procedure.name].includes(pstep.id), 'unmarkComplete': uncompleted_steps[procedure.name].includes(pstep.id), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'caution': pstep.id == 'CAUTION'}">&nbsp;{{pstep.id}}</td>
                         <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'failed': flagged_steps[procedure.name].includes(pstep.id), 'completed': completed_steps[procedure.name].includes(pstep.id), 'unmarkComplete': uncompleted_steps[procedure.name].includes(pstep.id), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'caution': pstep.id == 'CAUTION'}">&nbsp;{{pstep.text}}&nbsp;</td>
                         <td class='cnt' ng-class="{'indented_tx': pstep.id.includes('.'), 'failed': flagged_steps[procedure.name].includes(pstep.id), 'completed': completed_steps[procedure.name].includes(pstep.id), 'unmarkComplete': uncompleted_steps[procedure.name].includes(pstep.id), 'selected': pstep.id == selected_step.id, 'warn': pstep.id == 'WARN', 'caution': pstep.id == 'CAUTION'}">
