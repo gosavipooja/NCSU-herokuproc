@@ -41,8 +41,9 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
     $scope.fileUpload = false;
     $scope.procNumber = {};
     $scope.completed_steps = {};
-    $scope.flagged_steps={};
-    $scope.uncompleted_steps={};
+    $scope.flagged_steps = {};
+    $scope.uncompleted_steps = {};
+    $scope.next_step = '';
 
     $scope.init = function () {
         console.log('Init...');
@@ -68,10 +69,11 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
             console.log('Data is set');
             $scope.completed_steps = {};
             $scope.flagged_steps = {};
-            $scope.uncompleted_steps={};
+            $scope.uncompleted_steps = {};
         }
         $scope.procedure = Storage.get('procedure');
         $scope.selected_step = Storage.get('selected_step');
+        $scope.next_step = '';
         $scope.procNumber = Storage.get('procNumber');
     };
 
@@ -89,6 +91,7 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
             Storage.set('selected_step', pstep);
             $scope.selected_step = pstep;
             console.log('selected step is: ' + Storage.get('selected_step').id);
+            $scope.next_step = '';
         }
     }
 
@@ -235,6 +238,17 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
             }
             $scope.completed_steps[$scope.procedure.name].push(step.id);
             Storage.set('completed_steps', $scope.completed_steps[$scope.procedure.name]);
+            var next_step = '';
+            // checking for decimal is needed when there are sub steps.
+            // if (step.id.indexOf('.') == -1) {
+            next_step = parseInt(step.id) + 1;
+            // } else {
+            // This works only if there are less than 9 sub steps.
+            // next_step = {id:parseFloat(step.id)+1};
+            // }
+            console.log('next step is: ' + next_step);
+            Storage.set('next_step', next_step);
+            $scope.next_step = next_step;
         }
     };
 
@@ -263,6 +277,17 @@ app.controller('index', ['$scope', '$location', 'Storage', '$http', '$modal', '$
             }
             $scope.flagged_steps[$scope.procedure.name].push(step.id);
             Storage.set('flagged_steps', $scope.flagged_steps[$scope.procedure.name]);
+            var next_step = '';
+            // checking for decimal is needed when there are sub steps.
+            // if (step.id.indexOf('.') == -1) {
+            next_step = parseInt(step.id) + 1;
+            // } else {
+            // This works only if there are less than 9 sub steps.
+            // next_step = {id:parseFloat(step.id)+1};
+            // }
+            console.log('next step is: ' + next_step);
+            Storage.set('next_step', next_step);
+            $scope.next_step = next_step;
         }
     };
 
@@ -504,8 +529,8 @@ app.directive('stopwatch', function () {
     }
 });
 
-window.addEventListener("load",function() {
-    setTimeout(function(){
+window.addEventListener("load", function () {
+    setTimeout(function () {
         // This hides the address bar:
         window.scrollTo(0, 1);
     }, 0);

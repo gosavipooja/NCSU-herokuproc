@@ -179,6 +179,11 @@ tr.selected {
     border-color: #52658f !important;
 }
 
+tr.nxt_sel {
+    border: solid 3px !important;
+    border-color: #017e57 !important;
+}
+
 .back-button {
     float: left !important;
     left: 8 !important;
